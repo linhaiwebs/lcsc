@@ -1,0 +1,37 @@
+
+
+
+# 异步请求并发数，默认5
+CONCURRENT_REQUESTS: 5
+# 异步请求等待时间下区间
+REQUEST_SLEEP_TIME: 3  # 偏移3s为上区间
+
+# 上传到服务器
+UPLOAD_TO_SERVER: True
+
+# 是否保存在json文件
+SAVE_TO_JSON_FILE: False
+SAVE_PATH: '.\data'
+
+
+# 是否保存在mysql
+SAVE_TO_DATABASE: False
+DATABASE_SETTING:
+  DATABASE_HOST: 'localhost'
+  DATABASE_PORT: 3306
+  DATABASE_USER: 'root'
+  DATABASE_PASSWORD: '******'
+  DATABASE_DB: 'test'
+
+
+# 是否发送报错邮件
+SENT_EMAIL: False
+EMAIL_SETTING:
+  # 发送人qq邮箱
+  FROM_ADDR: 'xxx@qq.com'
+  # 发送人SMTP授权码，qq邮箱-->设置-->账户 开启SMTP
+  PASSWORD: '******'
+  # 邮箱服务器，写死
+  SMTP_HOST: 'smtp.qq.com'
+  # 收件人，以 , 为间隔的str
+  RECEIVE_LIST: 'xxx@qq.com, xxx@qq.com'

@@ -1,0 +1,58 @@
+version: 1
+formatters:
+  simple:
+    format: '%(asctime)s | %(levelname)s | %(lineno)d | %(message)s'
+  upgrade:
+    format: '{"timestamp": "%(asctime)s", "level": "%(levelname)s" , "requestUrl": "%(request_url)s" , "requestHeader": "%(request_headers)s" , "opType": "%(filename)s" ,"requestParam": "%(request_params)s" ,"queryLabel": "%(lineno)d" ,"message": "%(message)s" ,"context": "%(pathname)s" ,"accessTimeConsuming": "%(time_diff)s" ,"statusCode": "%(res_status)s"}'
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: simple
+  record_file_info_handler:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: simple
+    filename:
+    maxBytes: 10485760
+    backupCount: 50
+    encoding: utf8
+  record_file_error_handler:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: simple
+    filename:
+    maxBytes: 10485760
+    backupCount: 50
+    encoding: utf8
+  info_file_handler:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: upgrade
+    filename:
+    maxBytes: 10485760
+    backupCount: 50
+    encoding: utf8
+  error_file_handler:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: upgrade
+    filename:
+    maxBytes: 10485760
+    backupCount: 50
+    encoding: utf8
+
+loggers:
+  StreamLogger:
+    level: DEBUG
+    handlers: [ console ]
+    propagate: no
+  FileLogger:
+    level: INFO
+    handlers: [ info_file_handler, error_file_handler ]
+  RecordLogger:
+    level: INFO
+    handlers: [ console, record_file_info_handler, record_file_error_handler ]
+root:
+  level: INFO
+  handlers: []
